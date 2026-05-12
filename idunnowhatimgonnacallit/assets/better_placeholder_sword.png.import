@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd3oswsggw4uw"
-path="res://.godot/imported/New Piskel.png-ceb04bbfa6194e168ecb51cd670f4662.ctex"
+uid="uid://dg6b51pb5cf5g"
+path="res://.godot/imported/better_placeholder_sword.png-2e0b0ef73df43031279d270f0b762c08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/New Piskel.png"
-dest_files=["res://.godot/imported/New Piskel.png-ceb04bbfa6194e168ecb51cd670f4662.ctex"]
+source_file="res://assets/better_placeholder_sword.png"
+dest_files=["res://.godot/imported/better_placeholder_sword.png-2e0b0ef73df43031279d270f0b762c08.ctex"]
 
 [params]
 
