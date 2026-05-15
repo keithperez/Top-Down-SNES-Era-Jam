@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://co4i2c823dm38"]
 
-[ext_resource type="Texture2D" uid="uid://cehxtqec6i58b" path="res://assets/placeholder_character.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://5af3qkoyifrw" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://bh3rq2r3ihbv3" path="res://assets/character.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dg6b51pb5cf5g" path="res://assets/better_placeholder_sword.png" id="3_qhqgy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(47, 57)
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 30.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("3_qhqgy")
@@ -103,15 +103,15 @@ animations = [{
 size = Vector2(64, 32)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2050349244]
+collision_layer = 4
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=81177568]
-position = Vector2(2.5, 3.5)
-shape = SubResource("RectangleShape2D_g2els")
+shape = SubResource("CircleShape2D_qhqgy")
+debug_color = Color(0.9414726, 9.529888e-06, 0.6126414, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1968336987]
-scale = Vector2(2, 2)
-texture = ExtResource("1_3vyb7")
+texture = ExtResource("2_qhqgy")
 
 [node name="sword_pivot" type="Node2D" parent="." unique_id=452468395]
 
@@ -123,10 +123,12 @@ animation = &"new_animation"
 frame = 11
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="Area2D" parent="sword_pivot" unique_id=1043461957]
+[node name="sword_hitbox" type="Area2D" parent="sword_pivot" unique_id=1043461957]
 position = Vector2(0, 48)
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sword_pivot/CollisionShape2D" unique_id=1702992786]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword_pivot/sword_hitbox" unique_id=1702992786]
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [connection signal="animation_finished" from="sword_pivot/sword_swing_anim" to="." method="_on_sword_swing_anim_animation_finished"]
+[connection signal="body_entered" from="sword_pivot/sword_hitbox" to="." method="_on_collision_shape_2d_body_entered"]
