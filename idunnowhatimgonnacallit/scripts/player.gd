@@ -4,7 +4,7 @@ extends CharacterBody2D
 const SPEED: float = 300.0
 const NULLVECTOR: Vector2 = Vector2(0, 0)
 
-var damage: int = 5
+var damage: int = 7
 var swordSwinging: bool = false
 
 @onready var swordAnimation: AnimatedSprite2D = $sword_pivot/sword_swing_anim

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://28ot7hlyatss"]
+
+[ext_resource type="Script" uid="uid://d1toxbx0ymn2s" path="res://scripts/turret.gd" id="1_el7wl"]
+[ext_resource type="Texture2D" uid="uid://cixsy4f124afq" path="res://assets/turret_base.png" id="2_485p4"]
+[ext_resource type="Texture2D" uid="uid://c74n36thv4u0q" path="res://assets/turret_head.png" id="3_485p4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pp6j5"]
+radius = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fjxm"]
+atlas = ExtResource("2_485p4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dirdf"]
+atlas = ExtResource("2_485p4")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mqfwu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fjxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dirdf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="turret" type="CharacterBody2D" unique_id=1790080024]
+position = Vector2(65, 54)
+script = ExtResource("1_el7wl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552368348]
+shape = SubResource("CircleShape2D_pp6j5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1809880177]
+sprite_frames = SubResource("SpriteFrames_mqfwu")
+
+[node name="turret_head" type="Node2D" parent="." unique_id=5610685]
+
+[node name="Sprite2D" type="Sprite2D" parent="turret_head" unique_id=938648431]
+position = Vector2(24, 0)
+texture = ExtResource("3_485p4")

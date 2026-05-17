@@ -1,12 +1,14 @@
 [gd_scene format=4 uid="uid://cjqxj6wmn2op1"]
 
-[ext_resource type="Script" uid="uid://nm3vsdy2fl5x" path="res://scenes/debug_level.gd" id="1_ciaof"]
+[ext_resource type="Script" uid="uid://nm3vsdy2fl5x" path="res://scripts/debug_level.gd" id="1_ciaof"]
 [ext_resource type="PackedScene" uid="uid://co4i2c823dm38" path="res://scenes/player.tscn" id="1_ln2x5"]
 [ext_resource type="Texture2D" uid="uid://dd3oswsggw4uw" path="res://assets/invalid_space.png" id="2_6or15"]
 [ext_resource type="Texture2D" uid="uid://by3v2n2pyqcvc" path="res://assets/brick.png" id="3_8d50e"]
 [ext_resource type="PackedScene" uid="uid://d03e5xmk8b15j" path="res://scenes/testing_enemy.tscn" id="5_ahmjg"]
+[ext_resource type="Texture2D" uid="uid://lak7us7fjwe2" path="res://assets/placeholder_exit.png" id="6_ahmjg"]
+[ext_resource type="Script" uid="uid://3d4wgkxi12vu" path="res://scripts/exit_thign.gd" id="6_swri5"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8d50e"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swri5"]
 texture = ExtResource("2_6or15")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -110,7 +112,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "space"
 terrain_set_0/terrain_0/color = Color(0.1708124, 0.3520396, 0.76433915, 1)
-sources/0 = SubResource("TileSetAtlasSource_8d50e")
+sources/0 = SubResource("TileSetAtlasSource_swri5")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iwus7"]
 texture = ExtResource("3_8d50e")
@@ -120,6 +122,9 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_ciaof"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_iwus7")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d1lkt"]
+radius = 16.0
 
 [node name="debug_level" type="Node2D" unique_id=1924640694]
 script = ExtResource("1_ciaof")
@@ -172,3 +177,17 @@ position = Vector2(965, -254)
 
 [node name="enemy10" parent="enemy_groups" unique_id=1457772975 instance=ExtResource("5_ahmjg")]
 position = Vector2(1248, -241)
+
+[node name="exit_thign" type="Area2D" parent="." unique_id=1623046681]
+position = Vector2(387, 380)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("6_swri5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit_thign" unique_id=45417991]
+shape = SubResource("CircleShape2D_d1lkt")
+
+[node name="Sprite2D" type="Sprite2D" parent="exit_thign" unique_id=1091287116]
+texture = ExtResource("6_ahmjg")
+
+[connection signal="body_entered" from="exit_thign" to="exit_thign" method="_on_body_entered"]
