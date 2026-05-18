@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cehxtqec6i58b" path="res://assets/placeholder_character.png" id="1_kkxjh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5iklc"]
-radius = 32.0
+radius = 28.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5iklc"]
 bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqbbm"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqbbm"]
+radius = 22.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=27293496]
 collision_layer = 2
@@ -34,3 +37,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_hqbbm")
 max_value = 10.0
 value = 5.0
 show_percentage = false
+
+[node name="hurtBox" type="Area2D" parent="." unique_id=1259124712]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox" unique_id=266941454]
+shape = SubResource("CircleShape2D_hqbbm")
+debug_color = Color(0.9197433, 6.324381e-05, 0.6992671, 0.41960785)
+
+[connection signal="body_entered" from="hurtBox" to="." method="_on_hurt_box_body_entered"]

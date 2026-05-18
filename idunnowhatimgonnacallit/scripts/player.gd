@@ -7,9 +7,11 @@ const NULLVECTOR: Vector2 = Vector2(0, 0)
 
 var damage: int = 7
 var swordSwinging: bool = false
+var immune: bool = false
 
 @onready var swordAnimation: AnimatedSprite2D = $sword_pivot/sword_swing_anim
 @onready var swordCollider: Area2D = $sword_pivot/sword_hitbox
+@onready var iFrameTimer: Timer = $hit_immunity_timer
 
 var lastDirection: Vector2
 
@@ -19,6 +21,13 @@ func _ready():
 	pass
 
 func _physics_process(_delta: float) -> void:
+	
+	# iframe stuff
+	if immune:
+		if visible:
+			visible = false
+		else:
+			visible = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -34,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 		velocity = direction * SPEED
 		move_and_slide()
 	
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_pressed("attack"):
 		if !swordSwinging:
 			swordSwinging = true
 			do_damage()
@@ -52,4 +61,11 @@ func do_damage() -> void:
 		body.take_damage(damage)
 
 func take_damage(incoming_damage: int) -> void:
-	GameManager.player_take_damage(incoming_damage)
+	if !immune:
+		GameManager.player_take_damage(incoming_damage)
+		immune = true
+		iFrameTimer.start()
+
+func _on_hit_immunity_timer_timeout() -> void: 
+	immune = false
+	visible = true

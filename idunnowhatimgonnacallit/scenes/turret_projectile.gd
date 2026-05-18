@@ -1,7 +1,7 @@
 class_name TurretProjectile
 extends Area2D
 
-const SPEED: int = 300
+const SPEED: int = 450
 
 var direction: Vector2 = Vector2(0, 0)
 

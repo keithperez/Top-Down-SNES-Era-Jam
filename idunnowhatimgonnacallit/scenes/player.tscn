@@ -96,11 +96,11 @@ animations = [{
 }],
 "loop": false,
 "name": &"new_animation",
-"speed": 24.0
+"speed": 40.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(64, 32)
+size = Vector2(114, 59)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2050349244]
 collision_layer = 4
@@ -117,7 +117,8 @@ texture = ExtResource("2_qhqgy")
 
 [node name="sword_swing_anim" type="AnimatedSprite2D" parent="sword_pivot" unique_id=1146544174]
 visible = false
-position = Vector2(0, 32)
+position = Vector2(-1.9073486e-06, 31.5)
+scale = Vector2(1.7812501, 1.8593749)
 sprite_frames = SubResource("SpriteFrames_a8ls1")
 animation = &"new_animation"
 frame = 11
@@ -128,7 +129,11 @@ position = Vector2(0, 48)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_pivot/sword_hitbox" unique_id=1702992786]
+position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="hit_immunity_timer" type="Timer" parent="." unique_id=991719727]
 
 [connection signal="animation_finished" from="sword_pivot/sword_swing_anim" to="." method="_on_sword_swing_anim_animation_finished"]
 [connection signal="body_entered" from="sword_pivot/sword_hitbox" to="." method="_on_collision_shape_2d_body_entered"]
+[connection signal="timeout" from="hit_immunity_timer" to="." method="_on_hit_immunity_timer_timeout"]

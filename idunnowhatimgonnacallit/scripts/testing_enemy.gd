@@ -1,9 +1,13 @@
 class_name DebugEnemy
 extends CharacterBody2D
 
+const SPEED: int = 100
+const KNOCKBACK_SPEED: int = 200
+const DAMAGE: int = 5
+
 var health: int = 10
-const SPEED = 150
 var direction: Vector2 = Vector2(0,0)
+
 @onready var hpBar = $HealthBar
 
 func _ready() -> void:
@@ -22,3 +26,8 @@ func take_damage(damage: int) -> void:
 	hpBar.value = health
 	if health <= 0:
 		queue_free()
+	velocity = -direction * KNOCKBACK_SPEED
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	body.take_damage(DAMAGE)
+	pass # Replace with function body.
