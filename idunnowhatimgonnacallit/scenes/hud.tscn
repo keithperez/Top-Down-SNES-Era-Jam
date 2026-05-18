@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://qiudb0foxksi"]
+
+[ext_resource type="Script" uid="uid://mts6131euf48" path="res://scenes/hud.gd" id="1_ahhtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
+bg_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahhtf"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="HUD" type="Control" unique_id=1888781859]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahhtf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=360105068]
+
+[node name="health_bar" type="ProgressBar" parent="CanvasLayer" unique_id=2119892598]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = 33.0
+offset_right = -653.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_toqtt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ahhtf")
+value = 50.0

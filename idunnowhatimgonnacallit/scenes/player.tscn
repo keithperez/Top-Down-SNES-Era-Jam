@@ -104,7 +104,6 @@ size = Vector2(64, 32)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=2050349244]
 collision_layer = 4
-collision_mask = 9
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=81177568]

@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-
 const SPEED: float = 300.0
+const IFRAMES: int = 10.0
 const NULLVECTOR: Vector2 = Vector2(0, 0)
 
 var damage: int = 7
@@ -15,6 +15,7 @@ var lastDirection: Vector2
 
 func _ready():
 	swordAnimation.stop() # make sure it doesn't play all the way when the game loads
+	GameManager.send_health_status()
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -49,3 +50,6 @@ func _on_sword_swing_anim_animation_finished() -> void:
 func do_damage() -> void:
 	for body in swordCollider.get_overlapping_bodies():
 		body.take_damage(damage)
+
+func take_damage(incoming_damage: int) -> void:
+	GameManager.player_take_damage(incoming_damage)
