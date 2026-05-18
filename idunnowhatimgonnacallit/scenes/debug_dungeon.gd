@@ -1,6 +1,6 @@
 extends Node2D
 
-const gameFramesPerUpdate: int = 30
+const gameFramesPerUpdate: int = 10
 var gameFramesPassed: int = 0
 @onready var turrets = $turret_groups
 @onready var player = $Player

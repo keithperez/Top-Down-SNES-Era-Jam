@@ -36,3 +36,4 @@ tile_set = SubResource("TileSet_o7iy6")
 
 [node name="turret" parent="turret_groups" unique_id=1790080024 instance=ExtResource("3_0q5i3")]
 position = Vector2(594, 611)
+scale = Vector2(2, 2)

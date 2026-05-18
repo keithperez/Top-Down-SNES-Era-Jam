@@ -1,3 +1,4 @@
+class_name DebugEnemy
 extends CharacterBody2D
 
 var health: int = 10
