@@ -2,10 +2,10 @@ class_name Turret
 extends CharacterBody2D
 
 
-const TURN_RATE: int = 2
-const TIME_TO_AIM: int = 150 # physic frames until it shoots
-const TIME_TO_SHOOT: int = 100
-const TIME_TO_RELOAD: int = 100
+const TURN_RATE: int = 3
+const TIME_TO_AIM: int = 100 # physic frames until it shoots
+const TIME_TO_SHOOT: int = 50
+const TIME_TO_RELOAD: int = 75
 
 @export var projectile_scene: PackedScene
 
