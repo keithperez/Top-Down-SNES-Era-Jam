@@ -1,7 +1,7 @@
-class_name TurretProjectile
+class_name PlayerProjectile
 extends Area2D
 
-const SPEED: int = 450
+const SPEED: int = 500
 
 var direction: Vector2 = Vector2(0, 0)
 
@@ -19,9 +19,7 @@ func _on_projectile_lifetime_timeout() -> void:
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	if is_instance_of(body, Player):
+	if is_instance_of(body, Enemy):
 		body.take_damage(10)
-		queue_free()
-	elif is_instance_of(body, TileMapLayer):
 		queue_free()
 	pass # Replace with function body.

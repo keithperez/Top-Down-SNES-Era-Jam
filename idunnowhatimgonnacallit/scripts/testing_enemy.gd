@@ -1,4 +1,4 @@
-class_name DebugEnemy
+class_name Enemy
 extends CharacterBody2D
 
 const SPEED: int = 100

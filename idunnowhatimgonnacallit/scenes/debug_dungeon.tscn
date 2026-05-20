@@ -27,6 +27,11 @@ script = ExtResource("1_o7iy6")
 position = Vector2(353, 249)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1785874660]
+zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = 0
+limit_right = 2000
+limit_bottom = 2000
 position_smoothing_enabled = true
 
 [node name="HUD" parent="Player/Camera2D" unique_id=1888781859 instance=ExtResource("3_td28c")]

@@ -26,9 +26,10 @@ texture = ExtResource("1_1vc1r")
 [node name="hitbox" type="CollisionShape2D" parent="." unique_id=282869921]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_mpvhq")
+debug_color = Color(0.8518704, 2.695322e-06, 5.7756904e-07, 0.41960785)
 
 [node name="projectile_lifetime" type="Timer" parent="." unique_id=13641955]
-wait_time = 4.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

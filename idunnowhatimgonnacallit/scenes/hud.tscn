@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qiudb0foxksi"]
 
 [ext_resource type="Script" uid="uid://mts6131euf48" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://dpnfp8l3ubs1h" path="res://assets/bat_projectile_outlined.png" id="2_oo0fn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
 bg_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
@@ -25,10 +26,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 42.0
 offset_top = 33.0
-offset_right = -653.0
-offset_bottom = -540.0
+offset_right = -723.0
+offset_bottom = -586.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_toqtt")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ahhtf")
 value = 50.0
+
+[node name="ammo_count" type="TextureRect" parent="CanvasLayer" unique_id=1908887295]
+offset_left = 465.0
+offset_top = 25.0
+offset_right = 505.0
+offset_bottom = 65.0
+texture = ExtResource("2_oo0fn")
+
+[node name="ammo_count_number" type="Label" parent="CanvasLayer/ammo_count" unique_id=1363797300]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 22.0
+offset_right = 71.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "9999"

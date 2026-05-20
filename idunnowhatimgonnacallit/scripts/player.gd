@@ -6,6 +6,8 @@ const DODGE_SPEED: float = 1000.0
 const BACKSTEP_SPEED: float = 800.0
 const NULLVECTOR: Vector2 = Vector2(0, 0)
 
+var rng = RandomNumberGenerator.new()
+
 var damage: int = 7
 var swordSwinging: bool = false
 var immune: bool = false
@@ -19,11 +21,14 @@ var canDodge: bool = true
 @onready var dodgeCooldown: Timer = $dodge_cooldown_timer
 @onready var cape: Sprite2D = $cape
 
+@export var projectile_scene: PackedScene
+
 var lastDirection: Vector2 = Vector2(0,1)
 
 func _ready():
 	swordAnimation.stop() # make sure it doesn't play all the way when the game loads
 	GameManager.send_health_status()
+	GameManager.send_ammo_status()
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -68,6 +73,9 @@ func _physics_process(_delta: float) -> void:
 			velocity = -lastDirection * BACKSTEP_SPEED
 			dodgeTimer.start()
 			canDodge = false
+	
+	if Input.is_action_just_pressed("shoot") and GameManager.Ammo > 0:
+		shoot_proj()
 
 
 func _on_sword_swing_anim_animation_finished() -> void:
@@ -78,6 +86,14 @@ func _on_sword_swing_anim_animation_finished() -> void:
 func do_damage() -> void:
 	for body in swordCollider.get_overlapping_bodies():
 		body.take_damage(damage)
+
+func shoot_proj() -> void:
+	var proj = projectile_scene.instantiate()
+	proj.direction = Vector2.from_angle(rotation + PI/2 + rng.randf_range(-0.1, 0.1))
+	proj.rotation = rotation
+	proj.position = position
+	get_tree().root.add_child(proj)
+	GameManager.update_ammo_count(-1)
 
 func take_damage(incoming_damage: int) -> void:
 	if !immune:
