@@ -1,10 +1,11 @@
 [gd_scene format=4 uid="uid://dncrhcjpydoc4"]
 
 [ext_resource type="PackedScene" uid="uid://co4i2c823dm38" path="res://scenes/player.tscn" id="1_410vs"]
-[ext_resource type="Script" uid="uid://dbgnmc4dyky5i" path="res://scenes/debug_dungeon.gd" id="1_o7iy6"]
+[ext_resource type="Script" uid="uid://dbgnmc4dyky5i" path="res://scripts/debug_dungeon.gd" id="1_o7iy6"]
 [ext_resource type="Texture2D" uid="uid://bdhvn158p23te" path="res://assets/dungeon1_bricks.png" id="2_410vs"]
 [ext_resource type="PackedScene" uid="uid://28ot7hlyatss" path="res://scenes/turret.tscn" id="3_0q5i3"]
 [ext_resource type="PackedScene" uid="uid://qiudb0foxksi" path="res://scenes/hud.tscn" id="3_td28c"]
+[ext_resource type="PackedScene" uid="uid://cfvl8aq7c1g88" path="res://scenes/debug_boss.tscn" id="6_hqe4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0q5i3"]
 texture = ExtResource("2_410vs")
@@ -65,3 +66,6 @@ scale = Vector2(2, 2)
 [node name="turret6" parent="turret_groups" unique_id=664336365 instance=ExtResource("3_0q5i3")]
 position = Vector2(176, 908)
 scale = Vector2(2, 2)
+
+[node name="debugBoss" parent="." unique_id=364977679 instance=ExtResource("6_hqe4i")]
+position = Vector2(1985, 918)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3uyjx3bckh8v"]
 
 [ext_resource type="Texture2D" uid="uid://c74n36thv4u0q" path="res://assets/turret_head.png" id="1_1vc1r"]
-[ext_resource type="Script" uid="uid://dx86biq355ak6" path="res://scenes/turret_projectile.gd" id="1_v0v83"]
+[ext_resource type="Script" uid="uid://dx86biq355ak6" path="res://scripts/turret_projectile.gd" id="1_v0v83"]
 [ext_resource type="Texture2D" uid="uid://bi65s4ckqxseb" path="res://assets/turret_projectile_not_head.png" id="2_nw4si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpvhq"]

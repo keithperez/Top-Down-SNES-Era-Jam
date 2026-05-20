@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cfvl8aq7c1g88"]
+
+[ext_resource type="Script" uid="uid://d303aqgsmlhuo" path="res://scripts/debug_boss.gd" id="1_2ggn1"]
+[ext_resource type="Texture2D" uid="uid://bj8ke5rliibvs" path="res://assets/debug_boss_torso.png" id="2_xrrsi"]
+[ext_resource type="Texture2D" uid="uid://qy0nno080t8p" path="res://assets/debug_boss_head.png" id="3_xn0sv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxu0m"]
+size = Vector2(128, 256)
+
+[node name="debugBoss" type="CharacterBody2D" unique_id=364977679]
+script = ExtResource("1_2ggn1")
+
+[node name="body" type="Sprite2D" parent="." unique_id=1125059760]
+texture = ExtResource("2_xrrsi")
+
+[node name="head" type="Sprite2D" parent="." unique_id=779345116]
+texture = ExtResource("3_xn0sv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621580535]
+shape = SubResource("RectangleShape2D_vxu0m")

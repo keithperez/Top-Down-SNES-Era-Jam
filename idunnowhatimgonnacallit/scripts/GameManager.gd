@@ -11,9 +11,9 @@ var keys: Array[bool] = [false, false, false] # the three keys to open the final
 var upgrades: Array[bool] = [false, true, false, false, false] # 5 upgrades from what i can think
 # 0) better attack
 # 1) ranged attack
-# 2) give dash or upgrading dash
+# 2) increased length on player dodge
 # 3) soul sucking ability?
-# 4) idk
+# 4) iFrames on dodging
 
 func update_player_health(newHealth: int, maxHealth: int):
 	PlayerHealth = newHealth

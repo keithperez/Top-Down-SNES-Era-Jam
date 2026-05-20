@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qiudb0foxksi"]
 
-[ext_resource type="Script" uid="uid://mts6131euf48" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://mts6131euf48" path="res://scripts/hud.gd" id="1_ahhtf"]
 [ext_resource type="Texture2D" uid="uid://dpnfp8l3ubs1h" path="res://assets/bat_projectile_outlined.png" id="2_oo0fn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toqtt"]
@@ -8,6 +8,12 @@ bg_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahhtf"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oo0fn"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0.74259794, 0, 0, 1)
 
 [node name="HUD" type="Control" unique_id=1888781859]
 layout_mode = 3
@@ -51,3 +57,19 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "9999"
+
+[node name="boss_health_bar" type="ProgressBar" parent="CanvasLayer" unique_id=650630658]
+offset_left = 38.0
+offset_top = 585.0
+offset_right = 1107.0
+offset_bottom = 612.0
+theme_override_styles/background = SubResource("StyleBoxFlat_oo0fn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5ysmq")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/boss_health_bar" unique_id=1236302201]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 40.0
+text = "placeholder_boss_name"
