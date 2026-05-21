@@ -19,7 +19,7 @@ func _on_projectile_lifetime_timeout() -> void:
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	if is_instance_of(body, Enemy):
+	if is_instance_of(body, Enemy) or is_instance_of(body, Boss):
 		body.take_damage(10)
 		queue_free()
 	pass # Replace with function body.

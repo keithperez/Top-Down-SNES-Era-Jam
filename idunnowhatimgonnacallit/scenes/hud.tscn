@@ -59,6 +59,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "9999"
 
 [node name="boss_health_bar" type="ProgressBar" parent="CanvasLayer" unique_id=650630658]
+visible = false
 offset_left = 38.0
 offset_top = 585.0
 offset_right = 1107.0
@@ -68,7 +69,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5ysmq")
 value = 50.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="CanvasLayer/boss_health_bar" unique_id=1236302201]
+[node name="boss_name" type="Label" parent="CanvasLayer/boss_health_bar" unique_id=1236302201]
 layout_mode = 0
 offset_top = -23.0
 offset_right = 40.0

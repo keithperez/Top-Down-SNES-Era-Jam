@@ -8,6 +8,8 @@
 size = Vector2(128, 256)
 
 [node name="debugBoss" type="CharacterBody2D" unique_id=364977679]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_2ggn1")
 
 [node name="body" type="Sprite2D" parent="." unique_id=1125059760]
