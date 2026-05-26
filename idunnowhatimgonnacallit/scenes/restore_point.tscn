@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cjss71q8w6vyv"]
+
+[ext_resource type="Script" uid="uid://dhacr6e5qn88w" path="res://scripts/restore_point.gd" id="1_lnple"]
+[ext_resource type="Texture2D" uid="uid://d3je72os3pjsc" path="res://assets/coffin.png" id="1_tsbpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnple"]
+size = Vector2(126, 39.5)
+
+[node name="restore_point" type="Area2D" unique_id=1092039278]
+collision_mask = 5
+script = ExtResource("1_lnple")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=732395608]
+position = Vector2(0, 8.25)
+shape = SubResource("RectangleShape2D_lnple")
+debug_color = Color(1.1551381e-06, 0.63979864, 0.36397573, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=306542688]
+texture = ExtResource("1_tsbpc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

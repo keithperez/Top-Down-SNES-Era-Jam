@@ -74,3 +74,40 @@ layout_mode = 0
 offset_top = -23.0
 offset_right = 40.0
 text = "placeholder_boss_name"
+
+[node name="context_text" type="Label" parent="CanvasLayer" unique_id=850780020]
+offset_left = 44.0
+offset_top = 87.0
+offset_right = 84.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Time until Sun comes out:"
+
+[node name="time" type="Label" parent="CanvasLayer" unique_id=1991990503]
+offset_left = 254.0
+offset_top = 89.0
+offset_right = 296.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "99:99"
+
+[node name="notification_text" type="Label" parent="CanvasLayer" unique_id=1534123645]
+visible = false
+offset_left = 1.0
+offset_top = 145.0
+offset_right = 1155.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Notification Text Goes Here!"
+horizontal_alignment = 1
+
+[node name="notification_timer" type="Timer" parent="." unique_id=298699767]
+one_shot = true
+
+[connection signal="timeout" from="notification_timer" to="." method="_on_notification_timer_timeout"]

@@ -19,6 +19,7 @@ var canDodge: bool = true
 @onready var iFrameTimer: Timer = $hit_immunity_timer
 @onready var dodgeTimer: Timer = $dodge_time
 @onready var dodgeCooldown: Timer = $dodge_cooldown_timer
+@onready var knockbackTimer: Timer = $knocked_back_timer
 @onready var cape: Sprite2D = $cape
 
 @export var projectile_scene: PackedScene
@@ -62,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 			swordAnimation.play()
 			swordAnimation.visible = true
 	
-	if canDodge:
+	if canDodge and !dodging:
 		if Input.is_action_just_pressed("dash"):
 			dodging = true
 			velocity = lastDirection * DODGE_SPEED
@@ -74,7 +75,7 @@ func _physics_process(_delta: float) -> void:
 			dodgeTimer.start()
 			canDodge = false
 	
-	if Input.is_action_just_pressed("shoot") and GameManager.Ammo > 0:
+	if Input.is_action_just_pressed("shoot") and GameManager.Ammo > 0 and GameManager.upgrades[1]:
 		shoot_proj()
 
 
@@ -101,6 +102,12 @@ func take_damage(incoming_damage: int) -> void:
 		immune = true
 		iFrameTimer.start()
 
+func knocked_back(knockback_speed: float) -> void:
+	dodging = true
+	velocity = knockback_speed * -lastDirection
+	knockbackTimer.start()
+	
+
 func _on_hit_immunity_timer_timeout() -> void: 
 	immune = false
 	visible = true
@@ -114,3 +121,7 @@ func _on_dodge_time_timeout() -> void:
 func _on_dodge_cooldown_timer_timeout() -> void:
 	canDodge = true
 	cape.visible = true
+
+func _on_knocked_back_timer_timeout() -> void:
+	dodging = false
+	velocity = NULLVECTOR

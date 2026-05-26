@@ -104,7 +104,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(114, 59)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2050349244]
+[node name="Player" type="CharacterBody2D" unique_id=2050349244]
 collision_layer = 4
 script = ExtResource("1_g2els")
 projectile_scene = ExtResource("2_qlg0r")
@@ -149,8 +149,11 @@ one_shot = true
 [node name="dodge_cooldown_timer" type="Timer" parent="." unique_id=1834596179]
 one_shot = true
 
+[node name="knocked_back_timer" type="Timer" parent="." unique_id=1711095914]
+
 [connection signal="animation_finished" from="sword_pivot/sword_swing_anim" to="." method="_on_sword_swing_anim_animation_finished"]
 [connection signal="body_entered" from="sword_pivot/sword_hitbox" to="." method="_on_collision_shape_2d_body_entered"]
 [connection signal="timeout" from="hit_immunity_timer" to="." method="_on_hit_immunity_timer_timeout"]
 [connection signal="timeout" from="dodge_time" to="." method="_on_dodge_time_timeout"]
 [connection signal="timeout" from="dodge_cooldown_timer" to="." method="_on_dodge_cooldown_timer_timeout"]
+[connection signal="timeout" from="knocked_back_timer" to="." method="_on_knocked_back_timer_timeout"]
