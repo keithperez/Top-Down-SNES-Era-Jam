@@ -75,7 +75,7 @@ func _physics_process(_delta: float) -> void:
 			dodgeTimer.start()
 			canDodge = false
 	
-	if Input.is_action_just_pressed("shoot") and GameManager.Ammo > 0 and GameManager.upgrades[1]:
+	if Input.is_action_just_pressed("shoot") and GameManager.Ammo > 0 and GameManager.upgrades[0]:
 		shoot_proj()
 
 

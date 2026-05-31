@@ -9,7 +9,7 @@ const TIME_TO_RELOAD: int = 75
 
 @export var projectile_scene: PackedScene
 
-var currentdelta: int = 0
+var currentdelta: float = 0
 var rotateTowards: float = 0.0
 var firingSequence: bool = false
 var reloading: bool = false
@@ -17,29 +17,16 @@ var reloading: bool = false
 @onready var sprite = $AnimatedSprite2D
 @onready var head = $turret_head
 
+@onready var aimTimer: Timer = $aiming_time
+@onready var shootingTimer: Timer = $shooting_time
+@onready var reloadingTimer: Timer = $reloading_time
+
+func _ready() -> void:
+	aimTimer.start()
+
 func _physics_process(delta: float) -> void:
-	if firingSequence:
-		if currentdelta >= TIME_TO_SHOOT:
-			currentdelta = 0
-			firingSequence = false
-			reloading = true
-			fire()
-			sprite.play()
-			head.visible = false
-	elif reloading:
-		if currentdelta >= TIME_TO_RELOAD:
-			currentdelta = 0
-			reloading = false
-			sprite.stop()
-			head.visible = true
-		pass
-	else:
+	if !firingSequence and !reloading:
 		rotation = rotate_toward(rotation, rotateTowards, TURN_RATE * delta)
-		move_and_slide()
-		if currentdelta >= TIME_TO_AIM:
-			currentdelta = 0
-			firingSequence = true
-	currentdelta += 1
 
 func rotate_to(player_pos: Vector2) -> void:
 	rotateTowards = position.angle_to_point(player_pos)
@@ -50,3 +37,25 @@ func fire() -> void:
 	proj.rotation = rotation
 	proj.position = position
 	get_tree().root.add_child(proj)
+
+
+func _on_aiming_time_timeout() -> void:
+	firingSequence = true
+	shootingTimer.start()
+	pass # Replace with function body.
+
+func _on_shooting_time_timeout() -> void:
+	fire()
+	sprite.play()
+	head.visible = false
+	reloading = true
+	firingSequence = false
+	reloadingTimer.start()
+	pass # Replace with function body.
+
+func _on_reloading_time_timeout() -> void:
+	reloading = false
+	head.visible = true
+	aimTimer.start()
+	sprite.stop()
+	pass # Replace with function body.

@@ -31,6 +31,8 @@ animations = [{
 }]
 
 [node name="turret" type="CharacterBody2D" unique_id=1790080024]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_el7wl")
 projectile_scene = ExtResource("2_pp6j5")
 
@@ -38,10 +40,27 @@ projectile_scene = ExtResource("2_pp6j5")
 shape = SubResource("CircleShape2D_pp6j5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1809880177]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mqfwu")
 
 [node name="turret_head" type="Node2D" parent="." unique_id=5610685]
 
 [node name="Sprite2D" type="Sprite2D" parent="turret_head" unique_id=938648431]
-position = Vector2(24, 0)
+position = Vector2(48, 0)
+scale = Vector2(2, 2)
 texture = ExtResource("3_485p4")
+
+[node name="aiming_time" type="Timer" parent="." unique_id=1024741775]
+wait_time = 3.0
+one_shot = true
+
+[node name="shooting_time" type="Timer" parent="." unique_id=1730906526]
+one_shot = true
+
+[node name="reloading_time" type="Timer" parent="." unique_id=554952409]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="aiming_time" to="." method="_on_aiming_time_timeout"]
+[connection signal="timeout" from="shooting_time" to="." method="_on_shooting_time_timeout"]
+[connection signal="timeout" from="reloading_time" to="." method="_on_reloading_time_timeout"]

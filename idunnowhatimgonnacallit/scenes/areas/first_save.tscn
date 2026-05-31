@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://cnsig7dr3xatm"]
 
-[ext_resource type="Script" uid="uid://cenlswgpsvg35" path="res://scripts/first_save.gd" id="1_0aaa2"]
-[ext_resource type="PackedScene" uid="uid://co4i2c823dm38" path="res://scenes/player.tscn" id="1_dnqsn"]
-[ext_resource type="PackedScene" uid="uid://qiudb0foxksi" path="res://scenes/hud.tscn" id="2_tnf7m"]
-[ext_resource type="Texture2D" uid="uid://bdhvn158p23te" path="res://assets/dungeon1_bricks.png" id="3_b0bd2"]
-[ext_resource type="Texture2D" uid="uid://c1fqsi8bwghx0" path="res://assets/first_dungeon_bricks.png" id="4_0wbog"]
-[ext_resource type="PackedScene" uid="uid://cjss71q8w6vyv" path="res://scenes/restore_point.tscn" id="5_0wbog"]
+[ext_resource type="Script" uid="uid://cenlswgpsvg35" path="res://scripts/first_save.gd" id="1_fdcsp"]
+[ext_resource type="PackedScene" uid="uid://co4i2c823dm38" path="res://scenes/player.tscn" id="2_yiuxf"]
+[ext_resource type="PackedScene" uid="uid://qiudb0foxksi" path="res://scenes/hud.tscn" id="3_31rt4"]
+[ext_resource type="Texture2D" uid="uid://bdhvn158p23te" path="res://assets/dungeon1_bricks.png" id="4_ardgp"]
+[ext_resource type="Texture2D" uid="uid://c1fqsi8bwghx0" path="res://assets/first_dungeon_bricks.png" id="5_y2i0x"]
+[ext_resource type="PackedScene" uid="uid://cjss71q8w6vyv" path="res://scenes/restore_point.tscn" id="6_71wn6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0aaa2"]
-texture = ExtResource("3_b0bd2")
+texture = ExtResource("4_ardgp")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/z_index = -1
@@ -16,7 +16,7 @@ texture_region_size = Vector2i(32, 32)
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2vdhv"]
-texture = ExtResource("4_0wbog")
+texture = ExtResource("5_y2i0x")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/z_index = -1
@@ -34,7 +34,7 @@ sources/1 = SubResource("TileSetAtlasSource_2vdhv")
 size = Vector2(119, 36)
 
 [node name="first_save" type="Node2D" unique_id=1870884597]
-script = ExtResource("1_0aaa2")
+script = ExtResource("1_fdcsp")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1931377053]
 z_index = -3
@@ -42,7 +42,7 @@ offset_right = 1601.0
 offset_bottom = 977.0
 color = Color(5.1608413e-06, 5.160842e-06, 5.1608413e-06, 1)
 
-[node name="Player" parent="." unique_id=2050349244 instance=ExtResource("1_dnqsn")]
+[node name="Player" parent="." unique_id=2050349244 instance=ExtResource("2_yiuxf")]
 position = Vector2(667, 482)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1834047122]
@@ -51,15 +51,15 @@ limit_top = 150
 limit_right = 1152
 limit_bottom = 780
 
-[node name="HUD" parent="Player/Camera2D" unique_id=1888781859 instance=ExtResource("2_tnf7m")]
+[node name="HUD" parent="Player/Camera2D" unique_id=1888781859 instance=ExtResource("3_31rt4")]
 
 [node name="tutorial hud" type="CanvasLayer" parent="Player/Camera2D/HUD" unique_id=1456541845]
 
 [node name="tutorial_text" type="Label" parent="Player/Camera2D/HUD/tutorial hud" unique_id=289254397]
-offset_left = 14.0
-offset_top = 371.0
-offset_right = 208.0
-offset_bottom = 394.0
+offset_left = 21.0
+offset_top = 246.0
+offset_right = 365.0
+offset_bottom = 503.0
 text = "WASD / Left Stick - Move
 Square Button - Attack
 Left Bumper - Dash
@@ -67,6 +67,9 @@ Left Trigger - Backstep
 
 Touch coffins to restore health and supplies!
 Touch purple boxes to enter areas!
+
+Outside of dungeons, time will countdown
+until sunrise!
 
 Defeat the Vampire Hunter before
 the sun comes out!"
@@ -90,7 +93,7 @@ offset_right = 57.0
 offset_bottom = 8.0
 color = Color(1, 0, 1, 1)
 
-[node name="restore_point" parent="." unique_id=1092039278 instance=ExtResource("5_0wbog")]
+[node name="restore_point" parent="." unique_id=1092039278 instance=ExtResource("6_71wn6")]
 position = Vector2(684, 617)
 
 [connection signal="body_entered" from="exit_area" to="." method="_on_exit_area_body_entered"]

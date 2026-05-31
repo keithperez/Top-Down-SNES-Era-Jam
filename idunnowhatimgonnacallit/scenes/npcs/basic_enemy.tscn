@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c7qdm3gpr15xe"]
+
+[ext_resource type="Script" uid="uid://ddgaw867bc5m1" path="res://basic_enemy.gd" id="1_wt36w"]
+[ext_resource type="Texture2D" uid="uid://cr41el0vok3a5" path="res://assets/basic_enemy.png" id="2_ix0jn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ix0jn"]
+radius = 22.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix0jn"]
+bg_color = Color(0.004019165, 0.004019165, 0.004019165, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ft1a"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ft1a"]
+radius = 13.0
+
+[node name="basic_enemy" type="CharacterBody2D" unique_id=1132112440]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_wt36w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1707545256]
+texture = ExtResource("2_ix0jn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1876872960]
+shape = SubResource("CircleShape2D_ix0jn")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1790006868]
+z_index = 1
+offset_left = -25.0
+offset_top = -44.0
+offset_right = 25.0
+offset_bottom = -34.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ix0jn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ft1a")
+max_value = 10.0
+value = 5.0
+show_percentage = false
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1661083907]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=1453717806]
+shape = SubResource("CircleShape2D_6ft1a")
+debug_color = Color(0.93299043, 2.5124253e-05, 0.64853716, 0.41960785)
+
+[node name="knockback_timer" type="Timer" parent="." unique_id=737655943]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]

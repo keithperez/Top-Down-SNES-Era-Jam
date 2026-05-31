@@ -1,27 +1,25 @@
 class_name TurretProjectile
-extends Area2D
+extends CharacterBody2D
 
-const SPEED: int = 450
+const SPEED: int = 600
 
 var direction: Vector2 = Vector2(0, 0)
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	velocity = direction * SPEED
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	position += direction * SPEED * delta
+func _physics_process(_delta: float) -> void:
+	move_and_slide()
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if is_instance_of(collider, Player):
+			collider.take_damage(10)
+			queue_free()
+		elif is_instance_of(collider, TileMapLayer):
+			queue_free()
 
 func _on_projectile_lifetime_timeout() -> void:
 	queue_free()
-
-func _on_body_entered(body: Node2D) -> void:
-	if is_instance_of(body, Player):
-		body.take_damage(10)
-		queue_free()
-	elif is_instance_of(body, TileMapLayer):
-		queue_free()
-	pass # Replace with function body.

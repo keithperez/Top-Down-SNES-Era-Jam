@@ -104,6 +104,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(114, 59)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlg0r"]
+size = Vector2(62, 47)
+
 [node name="Player" type="CharacterBody2D" unique_id=2050349244]
 collision_layer = 4
 script = ExtResource("1_g2els")
@@ -139,6 +142,10 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_pivot/sword_hitbox" unique_id=1702992786]
 position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sword_pivot/sword_hitbox" unique_id=1487118870]
+position = Vector2(0, -39.5)
+shape = SubResource("RectangleShape2D_qlg0r")
 
 [node name="hit_immunity_timer" type="Timer" parent="." unique_id=991719727]
 
