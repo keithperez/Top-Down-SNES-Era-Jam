@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://by3v2n2pyqcvc" path="res://assets/brick.png" id="8_hmb0f"]
 [ext_resource type="Texture2D" uid="uid://c6wdec22dciy" path="res://assets/dungeon_entrance_rangedUnlock.png" id="8_w5tgi"]
 [ext_resource type="PackedScene" uid="uid://c7qdm3gpr15xe" path="res://scenes/npcs/basic_enemy.tscn" id="9_0l85j"]
-[ext_resource type="PackedScene" uid="uid://28ot7hlyatss" path="res://scenes/turret.tscn" id="13_xtmat"]
+[ext_resource type="PackedScene" uid="uid://28ot7hlyatss" path="res://scenes/npcs/turret.tscn" id="13_xtmat"]
 [ext_resource type="Texture2D" uid="uid://ofqkfiof1jt4" path="res://assets/tank_spikes.png" id="14_xtmat"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1tox"]
@@ -94,7 +94,7 @@ tile_map_data = PackedByteArray("AAACAP7/AgAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAA
 tile_set = SubResource("TileSet_0l85j")
 
 [node name="Player" parent="." unique_id=2050349244 instance=ExtResource("1_6ml2x")]
-position = Vector2(4135, -887)
+position = Vector2(-1012, -703)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1808718409]
 position_smoothing_enabled = true

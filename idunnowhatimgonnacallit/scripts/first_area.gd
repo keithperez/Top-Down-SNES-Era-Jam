@@ -4,6 +4,7 @@ extends Node2D
 
 var firstgroupactive: bool = false
 var secondgroupactive: bool = false
+var bossActive: bool = false
 
 func _ready() -> void:
 	GameManager.update_time_left(false)
@@ -35,21 +36,19 @@ func _on_ranged_dungeon_entrance_body_entered(_body: Node2D) -> void:
 	get_tree().change_scene_to_file("res://scenes/areas/ranged_save.tscn")
 	pass # Replace with function body.
 
-
-
+# activating shit
 func _on_first_group_activator_body_entered(_body: Node2D) -> void:
 	firstgroupactive = true
 	pass # Replace with function body.
-
 
 func _on_second_group_activator_body_entered(_body: Node2D) -> void:
 	secondgroupactive = true
 	pass # Replace with function body.
 
-
 func _on_boss_activate_body_entered(_body: Node2D) -> void:
-	$boss_stoppers/boss_area_exit_stopper.visible = true
-	$boss_stoppers/boss_area_exit_stopper/CollisionShape2D.set_deferred("disabled", false)
-	$boss_stoppers/boss_area_dungeon_stopper.visible = true
-	$boss_stoppers/boss_area_dungeon_stopper/CollisionShape2D.set_deferred("disabled", false)
+	if !bossActive:
+		$boss_stoppers/boss_area_exit_stopper.visible = true
+		$boss_stoppers/boss_area_exit_stopper/CollisionShape2D.set_deferred("disabled", false)
+		$boss_stoppers/boss_area_dungeon_stopper.visible = true
+		$boss_stoppers/boss_area_dungeon_stopper/CollisionShape2D.set_deferred("disabled", false)
 	pass # Replace with function body.

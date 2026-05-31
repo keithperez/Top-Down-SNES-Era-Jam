@@ -1,4 +1,4 @@
-class_name DebugBoss
+class_name OrcBoss
 extends Boss
 
 const SWING_WINDUP_SPEED: float = 100.0
