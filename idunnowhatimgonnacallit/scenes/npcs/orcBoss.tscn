@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cfvl8aq7c1g88"]
 
-[ext_resource type="Script" uid="uid://d303aqgsmlhuo" path="res://scripts/debug_boss.gd" id="1_2ggn1"]
-[ext_resource type="Texture2D" uid="uid://bj8ke5rliibvs" path="res://assets/debug_boss_torso.png" id="2_xrrsi"]
-[ext_resource type="Texture2D" uid="uid://qy0nno080t8p" path="res://assets/debug_boss_head.png" id="3_xn0sv"]
+[ext_resource type="Script" uid="uid://d303aqgsmlhuo" path="res://scripts/orcBoss.gd" id="1_2ggn1"]
+[ext_resource type="Texture2D" uid="uid://djgtpgiit8bf6" path="res://assets/orc_body-1.png.png" id="2_nykov"]
+[ext_resource type="Texture2D" uid="uid://d3mkemjgdn0g7" path="res://assets/orc_head.png" id="3_oqlmi"]
 [ext_resource type="Texture2D" uid="uid://ttuo47ebjxcn" path="res://assets/orc_swing_attack.png" id="4_xn0sv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxu0m"]
-size = Vector2(128, 256)
+size = Vector2(143, 266)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jyb1"]
 size = Vector2(29, 226)
@@ -320,19 +320,24 @@ _data = {
 &"orc_swinging": SubResource("Animation_syj3a")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nykov"]
+size = Vector2(103, 182)
+
 [node name="orcBoss" type="CharacterBody2D" unique_id=364977679]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("1_2ggn1")
 
 [node name="body" type="Sprite2D" parent="." unique_id=1125059760]
-texture = ExtResource("2_xrrsi")
+texture = ExtResource("2_nykov")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621580535]
+position = Vector2(-3.5, 2)
 shape = SubResource("RectangleShape2D_vxu0m")
 
 [node name="head" type="Sprite2D" parent="." unique_id=779345116]
-texture = ExtResource("3_xn0sv")
+position = Vector2(-7, 0)
+texture = ExtResource("3_oqlmi")
 
 [node name="arm_pivot" type="Node2D" parent="." unique_id=894132345]
 position = Vector2(64, 0)
@@ -340,6 +345,8 @@ position = Vector2(64, 0)
 [node name="arm_attack" type="Area2D" parent="arm_pivot" unique_id=296334504]
 position = Vector2(43.000004, 157)
 rotation = 1.7882458
+collision_layer = 0
+collision_mask = 4
 monitoring = false
 
 [node name="arm_sprite" type="Sprite2D" parent="arm_pivot/arm_attack" unique_id=622733437]
@@ -367,7 +374,23 @@ one_shot = true
 [node name="retract_timer" type="Timer" parent="timers_section" unique_id=516024457]
 one_shot = true
 
+[node name="action_cooldown" type="Timer" parent="." unique_id=1216531777]
+wait_time = 3.0
+one_shot = true
+
+[node name="getoffmehitbox" type="Area2D" parent="." unique_id=1478762654]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="getoffmehitbox" unique_id=1842139493]
+position = Vector2(7.5, -2)
+shape = SubResource("RectangleShape2D_nykov")
+debug_color = Color(0.93916243, 1.4535487e-05, 0.62272125, 0.41960785)
+
+[connection signal="body_entered" from="arm_pivot/arm_attack" to="." method="_on_arm_attack_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="timers_section/windup_timer" to="." method="_on_windup_timer_timeout"]
 [connection signal="timeout" from="timers_section/swing_timer" to="." method="_on_swing_timer_timeout"]
 [connection signal="timeout" from="timers_section/retract_timer" to="." method="_on_retract_timer_timeout"]
+[connection signal="timeout" from="action_cooldown" to="." method="_on_action_cooldown_timeout"]
+[connection signal="body_entered" from="getoffmehitbox" to="." method="_on_getoffmehitbox_body_entered"]

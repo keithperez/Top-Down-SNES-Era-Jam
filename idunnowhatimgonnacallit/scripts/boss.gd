@@ -11,24 +11,26 @@ var dashing: bool = false
 @onready var dashTimer: Timer
 var dashingDamage: int
 
+var shouldMove: bool
 var doingAction: bool
 
 var activated: bool = false
 
 func take_damage(incoming_damage: int) -> void:
-	GameManager.boss_takes_damage(incoming_damage)
+	GameManager.boss_takes_damage(incoming_damage, -1)
 
 func look_toward(pos: Vector2) -> void:
 	lastDirection = position.direction_to(pos)
 	rotation = position.angle_to_point(pos)
 
 func keep_distance_from(pos: Vector2, distance: float) -> void:
-	look_toward(pos)
-	var remainingDistanceFromPos = distance - position.distance_to(pos)
-	if remainingDistanceFromPos <= 0: # if we are too far from pos, move toward it
-		velocity = lastDirection * speed
-	else: # move away
-		velocity = -lastDirection * speed
+	if shouldMove:
+		look_toward(pos)
+		var remainingDistanceFromPos = distance - position.distance_to(pos)
+		if remainingDistanceFromPos <= 0: # if we are too far from pos, move toward it
+			velocity = lastDirection * speed
+		else: # move away
+			velocity = -lastDirection * speed
 		
 func dash(input_speed: float, how_long: float) -> void:
 	velocity = lastDirection * input_speed

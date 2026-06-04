@@ -5,10 +5,13 @@ signal player_ammo_counter(currentAmmoCount: int, unlocked: bool)
 signal boss_health_bar_update(bossHealth: int, bossMaxHealth: int)
 signal boss_health_bar_exists(bossMaxHealth: int, bossName: String)
 
+signal boss_died(whichOne: int)
+
 signal update_time(time: String)
 signal notification(text: String)
 
 var playerSpawn: int = 0
+var bossesDead: Array[bool] = [false, false, false]
 
 var PlayerMaxHealth: int = 100
 var PlayerHealth: int = PlayerMaxHealth
@@ -16,7 +19,7 @@ var MaxAmmo: int = 20
 var Ammo: int = 20
 
 # in seconds
-var timeLeft: int = 60 * 20
+var timeLeft: int = 60 * 10
 
 var BossHealth: int = -1 # basically just there is no boss
 var BossMaxHealth: int = -1 # also the check
@@ -25,12 +28,11 @@ var keys: Array[bool] = [false, false, false] # the three keys to open the final
 var upgrades: Array[bool] = [false, false, false, false, false] # 5 upgrades from what i can think
 
 # 0) ranged attack
+# 1) better attack / faster
+# 2) faster dash
+# 3) more max ammo
+# 4) dealing damage heals you by a lil bit
 
-# 0) better attack
-# 1) ranged attack
-# 2) increased length on player dodge
-# 3) soul sucking ability?
-# 4) iFrames on dodging
 
 func update_time_left(removeSecond: bool) -> void:
 	if removeSecond:
@@ -63,8 +65,10 @@ func boss_exists(maxHealth: int, bossName: String) -> void:
 	BossHealth = maxHealth
 	emit_signal("boss_health_bar_exists", maxHealth, bossName)
 
-func boss_takes_damage(damage: int) -> void:
+func boss_takes_damage(damage: int, whichOne: int) -> void:
 	BossHealth -= damage
+	if BossHealth <= 0:
+		boss_dead(whichOne)
 	emit_signal("boss_health_bar_update", BossHealth, BossMaxHealth)
 	
 func notify_player(text: String) -> void:
@@ -75,6 +79,7 @@ func restore_everything() -> void:
 	Ammo = MaxAmmo
 	send_health_status()
 	send_ammo_status()
-	
-	
-	
+
+func boss_dead(whichOne: int) -> void:
+	bossesDead[whichOne] = true
+	emit_signal("boss_died", whichOne)

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://blsepwrgoxhqa"]
 
-[ext_resource type="Script" uid="uid://bxgm452h5geox" path="res://scenes/areas/ranged_save.gd" id="1_051vp"]
+[ext_resource type="Script" uid="uid://bxgm452h5geox" path="res://scripts/ranged_save.gd" id="1_051vp"]
 [ext_resource type="PackedScene" uid="uid://co4i2c823dm38" path="res://scenes/player.tscn" id="2_qx54o"]
 [ext_resource type="PackedScene" uid="uid://qiudb0foxksi" path="res://scenes/hud.tscn" id="3_mlnxt"]
 [ext_resource type="Texture2D" uid="uid://bdhvn158p23te" path="res://assets/dungeon1_bricks.png" id="4_dgp2n"]

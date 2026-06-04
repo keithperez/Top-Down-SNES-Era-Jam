@@ -9,6 +9,7 @@ size = Vector2(60, 16)
 
 [node name="turret_projectile" type="CharacterBody2D" unique_id=564090640]
 z_index = 1
+collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_v0v83")
 

@@ -30,6 +30,16 @@ func _ready():
 	swordAnimation.stop() # make sure it doesn't play all the way when the game loads
 	GameManager.send_health_status()
 	GameManager.send_ammo_status()
+	if GameManager.upgrades[1]:
+		swordAnimation.animation = "new_animation_1"
+		damage = 14
+		swordAnimation.scale = Vector2(2.25, 2.25)
+		swordCollider.scale = Vector2(1.5, 1.5)
+	if GameManager.upgrades[2]:
+		cape.texture = preload("res://assets/upgraded_cape.png")
+		dodgeCooldown.wait_time = 0.75
+		dodgeTimer.wait_time = 0.25
+		pass
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -87,6 +97,9 @@ func _on_sword_swing_anim_animation_finished() -> void:
 func do_damage() -> void:
 	for body in swordCollider.get_overlapping_bodies():
 		body.take_damage(damage)
+		if GameManager.upgrades[4]:
+			GameManager.player_take_damage(-2)
+		# heal some
 
 func shoot_proj() -> void:
 	var proj = projectile_scene.instantiate()

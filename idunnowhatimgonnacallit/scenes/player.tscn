@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cf26wxbbvxlmj" path="res://scenes/player_projectile.tscn" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://dg6b51pb5cf5g" path="res://assets/better_placeholder_sword.png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dtkpbs5xaac37" path="res://assets/player_cape.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cwqcr4af6shtk" path="res://assets/better_upgraded_sword-1.png.png" id="6_tuyoq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 30.0
@@ -57,6 +58,54 @@ region = Rect2(64, 192, 64, 64)
 atlas = ExtResource("3_qhqgy")
 region = Rect2(128, 192, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5pv"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ail"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(128, 192, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8ls1"]
 animations = [{
 "frames": [{
@@ -99,6 +148,47 @@ animations = [{
 "loop": false,
 "name": &"new_animation",
 "speed": 40.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fulsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r5pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60mlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ail")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a38lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujl30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}],
+"loop": false,
+"name": &"new_animation_1",
+"speed": 60.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
@@ -132,8 +222,6 @@ position = Vector2(-1.9073486e-06, 31.5)
 scale = Vector2(1.7812501, 1.8593749)
 sprite_frames = SubResource("SpriteFrames_a8ls1")
 animation = &"new_animation"
-frame = 11
-frame_progress = 1.0
 
 [node name="sword_hitbox" type="Area2D" parent="sword_pivot" unique_id=1043461957]
 position = Vector2(0, 48)
@@ -157,6 +245,7 @@ one_shot = true
 one_shot = true
 
 [node name="knocked_back_timer" type="Timer" parent="." unique_id=1711095914]
+one_shot = true
 
 [connection signal="animation_finished" from="sword_pivot/sword_swing_anim" to="." method="_on_sword_swing_anim_animation_finished"]
 [connection signal="body_entered" from="sword_pivot/sword_hitbox" to="." method="_on_collision_shape_2d_body_entered"]

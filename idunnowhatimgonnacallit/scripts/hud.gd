@@ -16,6 +16,7 @@ func _ready() -> void:
 	GameManager.connect("boss_health_bar_exists", _on_boss_existance)
 	GameManager.connect("notification", _on_notification)
 	GameManager.connect("update_time", _on_time_update)
+	GameManager.connect("boss_died", _boss_dead)
 
 func _on_player_health_update(current: int, _max: int) -> void:
 	healthBar.value = current
@@ -47,3 +48,6 @@ func _on_notification_timer_timeout() -> void:
 
 func _on_time_update(timeLeft: String) -> void:
 	timeLeftText.text = timeLeft
+
+func _boss_dead(_whichOne: int) -> void:
+	bossHealthBar.visible = false
