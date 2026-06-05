@@ -138,3 +138,7 @@ func _on_dodge_cooldown_timer_timeout() -> void:
 func _on_knocked_back_timer_timeout() -> void:
 	dodging = false
 	velocity = NULLVECTOR
+
+
+func _on_activate_boss_body_entered(_body: Node2D) -> void:
+	pass # Replace with function body.

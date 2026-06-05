@@ -14,7 +14,7 @@ var distance: float = true
 
 func _ready() -> void:
 	health = 300
-	boss_name = "The Bottomed Orge"
+	boss_name = "Napoleon, the Landlocked Ogre"
 	doingAction = false
 	dashTimer = $timers_section/dash_timer
 	dashingDamage = 20

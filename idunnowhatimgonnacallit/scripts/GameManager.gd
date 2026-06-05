@@ -25,7 +25,8 @@ var BossHealth: int = -1 # basically just there is no boss
 var BossMaxHealth: int = -1 # also the check
 
 var keys: Array[bool] = [false, false, false] # the three keys to open the final boss door
-var upgrades: Array[bool] = [false, false, false, false, false] # 5 upgrades from what i can think
+#var upgrades: Array[bool] = [false, false, false, false, false] # 5 upgrades from what i can think
+var upgrades: Array[bool] = [true, true, true, true, true] # 5 upgrades from what i can think
 
 # 0) ranged attack
 # 1) better attack / faster

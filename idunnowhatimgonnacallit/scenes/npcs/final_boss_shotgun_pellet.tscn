@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cxdp2e454f8rb"]
+
+[ext_resource type="Script" uid="uid://b1hvp4asg2xvu" path="res://scenes/npcs/final_boss_shotgun_pellet.gd" id="1_3ph5n"]
+[ext_resource type="Texture2D" uid="uid://55eum55u3otj" path="res://assets/final_boss_stuff/shotgun_pellet.png" id="1_k2for"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ph5n"]
+radius = 6.95
+
+[node name="final_boss_shotgun_pellet" type="CharacterBody2D" unique_id=1090369047]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_3ph5n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1059536039]
+texture = ExtResource("1_k2for")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=789776691]
+shape = SubResource("CircleShape2D_3ph5n")
+
+[node name="projectile_lifetime" type="Timer" parent="." unique_id=173450353]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="projectile_lifetime" to="." method="_on_projectile_lifetime_timeout"]

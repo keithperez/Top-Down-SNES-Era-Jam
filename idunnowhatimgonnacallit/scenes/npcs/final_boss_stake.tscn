@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://g3etvko680w4"]
+
+[ext_resource type="Script" uid="uid://cfkcpme1msk2j" path="res://final_boss_stake.gd" id="1_q6q8n"]
+[ext_resource type="Texture2D" uid="uid://busc1vlvtj214" path="res://assets/final_boss_stuff/oak_stake.png" id="2_t86l7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdeqb"]
+size = Vector2(25, 4)
+
+[node name="final_boss_stake" type="CharacterBody2D" unique_id=38332135]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_q6q8n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071912528]
+texture = ExtResource("2_t86l7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1526061458]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_pdeqb")
+debug_color = Color(0.91930246, 0.066680215, 0.67340916, 0.41960785)
+
+[node name="projectile_lifetime" type="Timer" parent="." unique_id=1619689745]
+
+[connection signal="timeout" from="projectile_lifetime" to="." method="_on_projectile_lifetime_timeout"]

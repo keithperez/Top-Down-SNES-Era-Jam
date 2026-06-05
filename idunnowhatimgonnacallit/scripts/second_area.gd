@@ -18,6 +18,7 @@ var framessincelastupdate: int = 0
 
 func _ready() -> void:
 	GameManager.update_time_left(false)
+	GameManager.notify_player("Area Two")
 	if GameManager.playerSpawn == 1:
 		player.position = $spawn_points/spawn_point1.position
 	elif GameManager.playerSpawn == 2:
@@ -68,6 +69,7 @@ func _on_to_upgrade_body_entered(_body: Node2D) -> void:
 
 # transition to the final boss
 func _on_to_final_boss_body_entered(_body: Node2D) -> void:
+	get_tree().change_scene_to_file("res://scenes/areas/final_safe_area.tscn")
 	pass # Replace with function body.
 
 

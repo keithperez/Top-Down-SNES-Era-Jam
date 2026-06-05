@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bq4nrlttojm7r"]
+
+[ext_resource type="Script" uid="uid://co07wkftd6eks" path="res://scenes/npcs/final_boss.gd" id="1_ehlqq"]
+[ext_resource type="Texture2D" uid="uid://b4unsjflilf2d" path="res://assets/final_boss_stuff/final_boss.png" id="1_u7oil"]
+[ext_resource type="Texture2D" uid="uid://b7rgshfnqaddd" path="res://assets/final_boss_stuff/super_shotgun.png" id="2_ibn0g"]
+[ext_resource type="PackedScene" uid="uid://cxdp2e454f8rb" path="res://scenes/npcs/final_boss_shotgun_pellet.tscn" id="2_jrk48"]
+[ext_resource type="Texture2D" uid="uid://7fgy80jauold" path="res://assets/final_boss_stuff/final_boss_hat.png" id="3_ehlqq"]
+[ext_resource type="PackedScene" uid="uid://g3etvko680w4" path="res://scenes/npcs/final_boss_stake.tscn" id="3_hn3ef"]
+[ext_resource type="Texture2D" uid="uid://b4gfls8oanaji" path="res://assets/final_boss_stuff/crucifix.png" id="5_jrk48"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jrk48"]
+radius = 81.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hn3ef"]
+radius = 60.00833
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ehlqq"]
+radius = 300.0
+
+[node name="final_boss" type="CharacterBody2D" unique_id=1700276737]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_ehlqq")
+projectile_pellet = ExtResource("2_jrk48")
+projectile_stake = ExtResource("3_hn3ef")
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=1831508476]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=922300215]
+shape = SubResource("CircleShape2D_jrk48")
+debug_color = Color(0.9431718, 9.62615e-06, 0.60506725, 0.41960785)
+
+[node name="body" type="Sprite2D" parent="." unique_id=1739360396]
+rotation = -1.5707964
+texture = ExtResource("1_u7oil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1666083933]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CircleShape2D_hn3ef")
+
+[node name="shotgun_tip" type="Node2D" parent="." unique_id=1424641243]
+position = Vector2(190, 0)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+
+[node name="shotgun" type="Sprite2D" parent="." unique_id=786053891]
+position = Vector2(129, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ibn0g")
+
+[node name="hat" type="Sprite2D" parent="." unique_id=1388069764]
+visible = false
+rotation = -1.5707964
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_ehlqq")
+
+[node name="crucifix" type="Sprite2D" parent="." unique_id=786018118]
+visible = false
+position = Vector2(110, 2)
+scale = Vector2(2, 2)
+texture = ExtResource("5_jrk48")
+
+[node name="bubble_shield" type="Area2D" parent="." unique_id=254776947]
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bubble_shield" unique_id=1922686368]
+shape = SubResource("CircleShape2D_ehlqq")

@@ -80,8 +80,14 @@ size = Vector2(97, 42)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5i60"]
 size = Vector2(402, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr4yg"]
+size = Vector2(47.435547, 328.00012)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1px2"]
 size = Vector2(20, 248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vc01"]
+size = Vector2(53.479004, 343.00003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5k81"]
 size = Vector2(163.99988, 20)
@@ -376,6 +382,10 @@ collision_mask = 4
 position = Vector2(303, 515.32355)
 shape = SubResource("RectangleShape2D_g5i60")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="group_activators/first_group_activator" unique_id=1492873133]
+position = Vector2(1161.2822, 2164)
+shape = SubResource("RectangleShape2D_dr4yg")
+
 [node name="second_group_activator" type="Area2D" parent="group_activators" unique_id=280760527]
 collision_layer = 0
 collision_mask = 4
@@ -383,6 +393,10 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="group_activators/second_group_activator" unique_id=1522148199]
 position = Vector2(1780, 2156)
 shape = SubResource("RectangleShape2D_v1px2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="group_activators/second_group_activator" unique_id=107560293]
+position = Vector2(3003.2605, 997.5)
+shape = SubResource("RectangleShape2D_1vc01")
 
 [node name="secret_group_activator" type="Area2D" parent="group_activators" unique_id=782244201]
 collision_layer = 0
