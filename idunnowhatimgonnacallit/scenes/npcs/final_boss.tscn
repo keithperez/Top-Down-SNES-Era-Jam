@@ -7,26 +7,28 @@
 [ext_resource type="Texture2D" uid="uid://7fgy80jauold" path="res://assets/final_boss_stuff/final_boss_hat.png" id="3_ehlqq"]
 [ext_resource type="PackedScene" uid="uid://g3etvko680w4" path="res://scenes/npcs/final_boss_stake.tscn" id="3_hn3ef"]
 [ext_resource type="Texture2D" uid="uid://b4gfls8oanaji" path="res://assets/final_boss_stuff/crucifix.png" id="5_jrk48"]
+[ext_resource type="Texture2D" uid="uid://busc1vlvtj214" path="res://assets/final_boss_stuff/oak_stake.png" id="8_pdee3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jrk48"]
-radius = 81.0
+radius = 63.007935
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn3ef"]
-radius = 60.00833
+radius = 81.02469
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ehlqq"]
 radius = 300.0
 
 [node name="final_boss" type="CharacterBody2D" unique_id=1700276737]
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_ehlqq")
 projectile_pellet = ExtResource("2_jrk48")
 projectile_stake = ExtResource("3_hn3ef")
 
-[node name="hurtbox" type="Area2D" parent="." unique_id=1831508476]
+[node name="hitbox" type="Area2D" parent="." unique_id=1831508476]
+collision_layer = 0
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=922300215]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=922300215]
 shape = SubResource("CircleShape2D_jrk48")
 debug_color = Color(0.9431718, 9.62615e-06, 0.60506725, 0.41960785)
 
@@ -34,22 +36,21 @@ debug_color = Color(0.9431718, 9.62615e-06, 0.60506725, 0.41960785)
 rotation = -1.5707964
 texture = ExtResource("1_u7oil")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1666083933]
+[node name="hurtbox" type="CollisionShape2D" parent="." unique_id=1666083933]
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CircleShape2D_hn3ef")
 
 [node name="shotgun_tip" type="Node2D" parent="." unique_id=1424641243]
 position = Vector2(190, 0)
-rotation = 1.5707964
 scale = Vector2(2, 2)
 
 [node name="shotgun" type="Sprite2D" parent="." unique_id=786053891]
+visible = false
 position = Vector2(129, -1)
 scale = Vector2(2, 2)
 texture = ExtResource("2_ibn0g")
 
 [node name="hat" type="Sprite2D" parent="." unique_id=1388069764]
-visible = false
 rotation = -1.5707964
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("3_ehlqq")
@@ -67,3 +68,70 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bubble_shield" unique_id=1922686368]
 shape = SubResource("CircleShape2D_ehlqq")
+
+[node name="GeneralTimer" type="Timer" parent="." unique_id=1575620025]
+one_shot = true
+
+[node name="dashing_warning" type="ColorRect" parent="." unique_id=878166490]
+visible = false
+offset_left = 97.0
+offset_top = -19.0
+offset_right = 701.0
+offset_bottom = 19.0
+color = Color(0.88218755, 0, 0, 0.5137255)
+
+[node name="stake_warning" type="Node2D" parent="." unique_id=823421743]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="stake_warning" unique_id=1290473951]
+position = Vector2(64.99999, -48.999996)
+rotation = -0.6763786
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="stake_warning" unique_id=562294677]
+position = Vector2(64.00001, 47.999996)
+rotation = 0.6004956
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="stake_warning" unique_id=742306738]
+position = Vector2(45, 72)
+rotation = 0.8242533
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D4" type="Sprite2D" parent="stake_warning" unique_id=1921027430]
+position = Vector2(0, 79)
+rotation = 1.553792
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D5" type="Sprite2D" parent="stake_warning" unique_id=954504785]
+position = Vector2(-41, 69)
+rotation = 2.0976963
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D6" type="Sprite2D" parent="stake_warning" unique_id=527619081]
+position = Vector2(-74, 28.999998)
+rotation = 2.6538982
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D7" type="Sprite2D" parent="stake_warning" unique_id=106096075]
+position = Vector2(-75, -9.999992)
+rotation = 3.420139
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D8" type="Sprite2D" parent="stake_warning" unique_id=828506434]
+position = Vector2(-44.999992, -67)
+rotation = -2.099241
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D9" type="Sprite2D" parent="stake_warning" unique_id=1071260997]
+position = Vector2(2.3841858e-07, -76.99999)
+rotation = -1.5995641
+texture = ExtResource("8_pdee3")
+
+[node name="Sprite2D10" type="Sprite2D" parent="stake_warning" unique_id=522678500]
+position = Vector2(39.999996, -70)
+rotation = -1.116898
+texture = ExtResource("8_pdee3")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="GeneralTimer" to="." method="_on_general_timer_timeout"]

@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://hxjo4wxf32ps"]
+
+[ext_resource type="Script" uid="uid://cb8ii7w2fu1ow" path="res://main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://b4unsjflilf2d" path="res://assets/final_boss_stuff/final_boss.png" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://7fgy80jauold" path="res://assets/final_boss_stuff/final_boss_hat.png" id="3_8ln24"]
+[ext_resource type="Texture2D" uid="uid://bh3rq2r3ihbv3" path="res://assets/character.png" id="4_rtw2f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6cm7"]
+line_spacing = 0.0
+font_size = 100
+outline_size = 63
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oa1go"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu84c"]
+font_size = 44
+font_color = Color(0, 0, 0, 1)
+
+[node name="main_menu" type="Control" unique_id=416937530]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=27231857]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 651.0
+
+[node name="play_game_button" type="Button" parent="." unique_id=2041506825]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 300.0
+offset_right = 463.0
+offset_bottom = 387.0
+text = "Play Game"
+
+[node name="Label" type="Label" parent="." unique_id=2083387627]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 17.0
+offset_right = 624.0
+offset_bottom = 291.0
+text = "KILL
+STEVE"
+label_settings = SubResource("LabelSettings_l6cm7")
+horizontal_alignment = 1
+
+[node name="steve_pointer2" type="Label" parent="." unique_id=1402840071]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 494.0
+offset_right = 1153.0
+offset_bottom = 768.0
+text = "YOU"
+label_settings = SubResource("LabelSettings_oa1go")
+horizontal_alignment = 1
+
+[node name="steve_pointer" type="Label" parent="." unique_id=716954868]
+layout_mode = 0
+offset_left = 641.0
+offset_top = 59.0
+offset_right = 1184.0
+offset_bottom = 333.0
+text = "STEVE"
+label_settings = SubResource("LabelSettings_oa1go")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=196258061]
+position = Vector2(913.9999, 196)
+scale = Vector2(2.265625, 1.6640625)
+texture = ExtResource("2_wu84c")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=279917465]
+position = Vector2(905, 179.99998)
+scale = Vector2(3.2382815, 1.5078125)
+texture = ExtResource("3_8ln24")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=964167001]
+position = Vector2(897, 427)
+scale = Vector2(3.671875, 2.4375)
+texture = ExtResource("4_rtw2f")
+
+[node name="made by" type="Label" parent="." unique_id=1519817837]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 390.0
+offset_right = 709.0
+offset_bottom = 643.0
+text = "Made by Keith Perez
+In Godot
+For The Top Down SNES Era Jam
+Music: Relent - Kevin MacLeod"
+label_settings = SubResource("LabelSettings_wu84c")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="play_game_button" to="." method="_on_play_game_button_pressed"]

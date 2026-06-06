@@ -5,6 +5,7 @@ signal player_ammo_counter(currentAmmoCount: int, unlocked: bool)
 signal boss_health_bar_update(bossHealth: int, bossMaxHealth: int)
 signal boss_health_bar_exists(bossMaxHealth: int, bossName: String)
 
+signal boss_pissed()
 signal boss_died(whichOne: int)
 
 signal update_time(time: String)
@@ -19,14 +20,13 @@ var MaxAmmo: int = 20
 var Ammo: int = 20
 
 # in seconds
-var timeLeft: int = 60 * 10
+var timeLeft: int = 60 * 5
 
 var BossHealth: int = -1 # basically just there is no boss
 var BossMaxHealth: int = -1 # also the check
 
 var keys: Array[bool] = [false, false, false] # the three keys to open the final boss door
-#var upgrades: Array[bool] = [false, false, false, false, false] # 5 upgrades from what i can think
-var upgrades: Array[bool] = [true, true, true, true, true] # 5 upgrades from what i can think
+var upgrades: Array[bool] = [false, false, false, false, false] # 5 upgrades from what i can think
 
 # 0) ranged attack
 # 1) better attack / faster
@@ -34,10 +34,26 @@ var upgrades: Array[bool] = [true, true, true, true, true] # 5 upgrades from wha
 # 3) more max ammo
 # 4) dealing damage heals you by a lil bit
 
+func _ready() -> void:
+	MusicManager.play()
+
+func reset_everything() -> void:
+	playerSpawn = 0
+	PlayerMaxHealth = 100
+	PlayerHealth = 100
+	MaxAmmo = 20
+	Ammo = 20
+	timeLeft = 60 * 5
+	BossHealth = -1
+	BossMaxHealth = -1
+	upgrades = [false, false, false, false, false]
+	bossesDead = [false, false, false]
 
 func update_time_left(removeSecond: bool) -> void:
 	if removeSecond:
 		timeLeft -= 1
+		if timeLeft <= 0:
+			get_tree().change_scene_to_file("res://scenes/you_died_screen.tscn")
 	@warning_ignore("integer_division") # i want this :D
 	emit_signal("update_time", str(timeLeft / 60) + ":" + "%02d" % (timeLeft % 60))
 	
@@ -51,7 +67,10 @@ func send_health_status() -> void:
 	emit_signal("player_health_updated", PlayerHealth, PlayerMaxHealth)
 
 func player_take_damage(damage: int) -> void:
-	PlayerHealth -= damage
+	if PlayerHealth - damage <= PlayerMaxHealth:
+		PlayerHealth -= damage
+	if PlayerHealth <= 0:
+		get_tree().change_scene_to_file("res://scenes/you_died_screen.tscn")
 	emit_signal("player_health_updated", PlayerHealth, PlayerMaxHealth)
 
 func send_ammo_status() -> void:
@@ -68,6 +87,9 @@ func boss_exists(maxHealth: int, bossName: String) -> void:
 
 func boss_takes_damage(damage: int, whichOne: int) -> void:
 	BossHealth -= damage
+	@warning_ignore("integer_division")
+	if BossHealth < BossMaxHealth / 2:
+		emit_signal("boss_pissed")
 	if BossHealth <= 0:
 		boss_dead(whichOne)
 	emit_signal("boss_health_bar_update", BossHealth, BossMaxHealth)

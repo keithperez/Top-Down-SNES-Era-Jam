@@ -7,6 +7,7 @@ const SWING_WINDUP_SPEED: float = 100.0
 @onready var windupTimer: Timer = $timers_section/windup_timer
 @onready var actionCooldownTimer: Timer = $action_cooldown
 @onready var bat_hitbox: Area2D = $arm_pivot/arm_attack
+@onready var getoffmehitbox: Area2D = $getoffmehitbox
 
 var canDoAction: bool = true
 
@@ -14,7 +15,7 @@ var distance: float = true
 
 func _ready() -> void:
 	health = 300
-	boss_name = "Napoleon, the Landlocked Ogre"
+	boss_name = "Raymond, the Ogre-Like Human"
 	doingAction = false
 	dashTimer = $timers_section/dash_timer
 	dashingDamage = 20
@@ -33,6 +34,8 @@ func _physics_process(_delta: float) -> void:
 			start_swing()
 		if shouldMove:
 			move_and_slide()
+	for body in getoffmehitbox.get_overlapping_bodies():
+		body.take_damage(20)
 
 # the whole start_swing process
 func start_swing() -> void:
@@ -74,5 +77,5 @@ func _on_arm_attack_body_entered(body: Node2D) -> void:
 	pass # Replace with function body.
 
 func _on_getoffmehitbox_body_entered(body: Node2D) -> void:
-	body.take_damage(5)
+	body.take_damage(15)
 	pass # Replace with function body.

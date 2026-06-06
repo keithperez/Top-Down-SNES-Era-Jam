@@ -98,8 +98,7 @@ func do_damage() -> void:
 	for body in swordCollider.get_overlapping_bodies():
 		body.take_damage(damage)
 		if GameManager.upgrades[4]:
-			GameManager.player_take_damage(-2)
-		# heal some
+			GameManager.player_take_damage(-1)
 
 func shoot_proj() -> void:
 	var proj = projectile_scene.instantiate()

@@ -4,6 +4,7 @@ extends Enemy
 @onready var hpBar = $HealthBar
 @onready var sprite = $Sprite2D
 @onready var timer = $knockback_timer
+@onready var hitbox = $hitbox
 
 var knockedBack: bool = false
 
@@ -20,6 +21,8 @@ func _physics_process(_delta: float) -> void:
 		velocity = -direction * knockback_speed
 	else:
 		velocity = direction * speed
+	for body in hitbox.get_overlapping_bodies():
+		body.take_damage(damage)
 		
 func take_damage(incoming_damage: int) -> void:
 	hpBar.visible = true

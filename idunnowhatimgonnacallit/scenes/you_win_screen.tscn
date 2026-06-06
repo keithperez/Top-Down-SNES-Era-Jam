@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://6jfarmqnuw2u"]
+
+[ext_resource type="Script" uid="uid://bn4esub8fn143" path="res://scenes/you_win_screen.gd" id="1_rti8p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l16qg"]
+line_spacing = 0.0
+font_size = 100
+outline_size = 63
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_otaq1"]
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[node name="you_win_screen" type="Control" unique_id=1631683386]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rti8p")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1347724308]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -19.0
+offset_right = 1192.0
+offset_bottom = 671.0
+
+[node name="Label" type="Label" parent="." unique_id=415976911]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 74.0
+offset_right = 821.0
+offset_bottom = 348.0
+text = "YOU KILLED
+STEVE!"
+label_settings = SubResource("LabelSettings_l16qg")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=2052603050]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 481.0
+offset_right = 693.0
+offset_bottom = 566.0
+text = "Return to main menu!"
+
+[node name="Label2" type="Label" parent="." unique_id=2088899738]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 378.0
+offset_right = 894.0
+offset_bottom = 445.0
+text = "Thanks for playing my game!"
+label_settings = SubResource("LabelSettings_otaq1")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

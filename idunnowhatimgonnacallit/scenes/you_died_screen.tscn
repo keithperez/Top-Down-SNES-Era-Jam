@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://p0kxks10c1dn"]
+
+[ext_resource type="Script" uid="uid://dno16uha1ffhf" path="res://scenes/you_died_screen.gd" id="1_qohug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3e02l"]
+line_spacing = 0.0
+font_size = 100
+outline_size = 63
+outline_color = Color(0, 0, 0, 1)
+
+[node name="you_died_screen" type="Control" unique_id=692437904]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qohug")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=905740811]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -17.0
+offset_right = 1175.0
+offset_bottom = 668.0
+
+[node name="Label" type="Label" parent="." unique_id=166143234]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 74.0
+offset_right = 821.0
+offset_bottom = 348.0
+text = "YOU GOT
+KILLED!"
+label_settings = SubResource("LabelSettings_3e02l")
+horizontal_alignment = 1
+
+[node name="back_to_main_menu" type="Button" parent="." unique_id=1695529637]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 412.0
+offset_right = 639.0
+offset_bottom = 524.0
+text = "Return to main menu"
+
+[connection signal="pressed" from="back_to_main_menu" to="." method="_on_back_to_main_menu_pressed"]

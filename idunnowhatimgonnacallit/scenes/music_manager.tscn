@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bmlvw8iwxqfkb"]
+
+[ext_resource type="AudioStream" uid="uid://vyf2h3rvs7p8" path="res://assets/Relent.mp3" id="1_hetdf"]
+[ext_resource type="Script" uid="uid://dtjgnjoy63w0k" path="res://scenes/music_manager.gd" id="2_jd6i5"]
+
+[node name="music_manager" type="AudioStreamPlayer" unique_id=1363921215]
+stream = ExtResource("1_hetdf")
+script = ExtResource("2_jd6i5")
